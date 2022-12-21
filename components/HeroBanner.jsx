@@ -21,7 +21,6 @@ const HeroBanner = ({ heroBanner }) => {
           <div className="desc">
             <h5>Description</h5>
             <p>{heroBanner.desc}</p>
-            53.45 min
           </div>
         </div>
       </div>
