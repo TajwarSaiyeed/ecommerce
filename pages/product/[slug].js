@@ -7,10 +7,12 @@ import {
   AiOutlineStar,
 } from "react-icons/ai";
 import { Product } from "../../components";
+import { useStateContext } from "../../context/StateContext";
 
 const ProductDetails = ({ product, products }) => {
   const { price, image, name, details } = product;
   const [index, setIndex] = useState(0);
+  const { incQty, decQty, qty, onAdd } = useStateContext();
   return (
     <div>
       <div className="product-detail-container">
@@ -53,19 +55,23 @@ const ProductDetails = ({ product, products }) => {
           <div className="quantity">
             <h3>Quantity: </h3>
             <p className="quantity-desc">
-              <span className="minus" onClick="">
+              <span className="minus" onClick={decQty}>
                 <AiOutlineMinus />
               </span>
               <span className="num" onClick="">
-                0
+                {qty}
               </span>
-              <span className="plus" onClick="">
+              <span className="plus" onClick={incQty}>
                 <AiOutlinePlus />
               </span>
             </p>
           </div>
           <div className="buttons">
-            <button type="button" className="add-to-cart">
+            <button
+              type="button"
+              onClick={() => onAdd(product, qty)}
+              className="add-to-cart"
+            >
               Add To Cart
             </button>
             <button type="button" className="buy-now">
@@ -114,7 +120,6 @@ export const getStaticProps = async ({ params: { slug } }) => {
   const product = await client.fetch(query);
   const products = await client.fetch(productsQuery);
 
-  console.log(product);
   return {
     props: {
       product,
