@@ -5,7 +5,13 @@ import Footer from "./Footer";
 
 const Layout = ({ children }) => {
   return (
-    <div className="layout">
+    <div
+      style={{
+        width: "100%",
+        maxWidth: "100vw"
+      }}
+      className="layout"
+    >
       <Head>
         <title>Abid Store</title>
       </Head>
