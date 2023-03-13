@@ -3,12 +3,14 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { BsBagCheckFill } from "react-icons/bs";
 import { useStateContext } from "../context/StateContext";
+import { runfireWorks } from "../lib/utils";
 
 const Success = () => {
   const { setCartItems, setTotalPrice, setTotalQuantities } = useStateContext();
 
   useEffect(() => {
     // localStorage.clear();
+    runfireWorks();
     setCartItems([]);
     setTotalPrice(0);
     setTotalQuantities(0);
